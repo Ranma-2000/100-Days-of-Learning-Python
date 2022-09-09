@@ -1,0 +1,2 @@
+Coding style - Comments
+Object-oriented Programming - def __init__.(self)
