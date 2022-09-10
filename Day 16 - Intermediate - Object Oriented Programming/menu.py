@@ -19,7 +19,7 @@ class Menu:
 
     def __init__(self):
         self.menu = [
-            MenuItem(name="latte", water=200, milk=150, coffee=24, cost=2.5),
+            MenuItem(name="latte", water=200, milk=150, coffee=24, cost=2.5),  # Call another class as an attribute
             MenuItem(name="espresso", water=50, milk=0, coffee=18, cost=1.5),
             MenuItem(name="cappuccino", water=250, milk=50, coffee=24, cost=3),
         ]
@@ -38,22 +38,19 @@ class Menu:
                 return item
         print("Sorry that item is not available.")
 
+# TODO-1: Create a def that can read multi drink orders as once.
+#   Problem: the output is not an object so it cannot check ingredients.
+# TODO-2: Change the code to create a dict with keys is objects from Menu class to check ingredients
     def order_drink(self, *args):
         """Order as many drinks as you want. Returns items if they exist, otherwise returns None"""
-        item_dict = {item.name: 0 for item in self.menu}
+        valid_item = [item.name for item in self.menu]
+        order_dict = {item: 0 for item in self.menu}
         wrong_order = []
-        for arg in args:
-            if type(arg) == list:
-                for item in arg:
-                    if item in item_dict.keys():
-                        item_dict[item] = item_dict[item] + 1
-                    else:
-                        wrong_order.append(item)
-                        print(f'Sorry we don\'t have {item}')
-            else:
-                if arg in item_dict.keys():
-                    item_dict[arg] = item_dict[arg] + 1
-                else:
-                    wrong_order.append(arg)
-                    print(f'Sorry we don\'t have {arg}')
-        return item_dict
+        for item in args[0]:
+            if item not in valid_item:
+                wrong_order.append(item)
+                print("Sorry that item is not available: {}".format(item))
+            for menu_item in self.menu:
+                if menu_item.name == item:
+                    order_dict[menu_item] = order_dict[menu_item] + 1
+        return order_dict
