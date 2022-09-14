@@ -2,6 +2,8 @@ from question_model import Question
 from data import question_data
 from quiz_brain import QuizBrain
 
+# TODO-1: Add feature that player can exit while answering questions.
+
 question_bank = []
 for question in question_data:
     question_text = question["question"]
