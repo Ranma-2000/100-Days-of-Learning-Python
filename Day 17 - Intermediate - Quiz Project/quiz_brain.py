@@ -17,7 +17,7 @@ class QuizBrain:
 
     def check_answer(self, user_answer, correct_answer):
         if user_answer.lower() == 'exit':
-            self.question_number = len(self.question_list)
+            self.question_number = len(self.question_list)  # break the while loop to exit quiz game
         else:
             if user_answer.lower() == correct_answer.lower():
                 self.score += 1
